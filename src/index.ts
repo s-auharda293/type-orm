@@ -1,8 +1,10 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { Photo } from "./entity/Photo";
+import { Photo } from "./entity/Photo.entity";
 import { doTask } from "./repositories/repo";
-import { PhotoMetadata } from "./entity/PhotoMetadata";
+import { PhotoMetadata } from "./entity/PhotoMetadata.entity";
+import { Author } from "./entity/Author.entity";
+import { Album } from "./entity/Album.entity";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -11,7 +13,7 @@ export const AppDataSource = new DataSource({
   username: "sauharda",
   password: "1619",
   database: "typeormlearn",
-  entities: [Photo, PhotoMetadata],
+  entities: [Photo, PhotoMetadata, Author, Album],
   synchronize: true,
   logging: false,
 });

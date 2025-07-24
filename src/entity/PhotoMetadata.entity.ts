@@ -4,8 +4,9 @@ import {
   PrimaryGeneratedColumn,
   OneToOne,
   JoinColumn,
+  Relation,
 } from "typeorm";
-import { Photo } from "./Photo";
+import { Photo } from "./Photo.entity";
 
 @Entity()
 export class PhotoMetadata {
@@ -27,7 +28,7 @@ export class PhotoMetadata {
   @Column()
   comment: string;
 
-  @OneToOne(() => Photo)
-  @JoinColumn()
+  @OneToOne(() => Photo, (photo) => photo.metadata)
+  @JoinColumn({ name: "photo_id" })
   photo: Photo;
 }

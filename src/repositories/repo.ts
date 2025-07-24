@@ -1,5 +1,5 @@
-import { Photo } from "../entity/Photo";
-import { PhotoMetadata } from "../entity/PhotoMetadata";
+import { Photo } from "../entity/Photo.entity";
+import { PhotoMetadata } from "../entity/PhotoMetadata.entity";
 import { AppDataSource } from "../index";
 
 // create a photo
@@ -29,4 +29,19 @@ export async function doTask() {
 
   // photo is saved. Now we need to save a photo metadata
   await metadataRepository.save(metadata);
+
+  const photos = await photoRepository.find({
+    relations: {
+      metadata: true,
+    },
+  });
+
+  const anotherPhoto = await photoRepository
+    .createQueryBuilder("photo")
+    .innerJoinAndSelect("photo.metadata", "metadata")
+    .getMany();
+
+  // console.log(photos);
+
+  console.log(anotherPhoto);
 }
