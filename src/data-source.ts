@@ -1,6 +1,7 @@
-import "reflect-metadata";
+import { PhotoMetadata } from "./entity/PhotoMetadata.entity";
+import { Author } from "./entity/Author.entity";
+import { Album } from "./entity/Album.entity";
 import { DataSource } from "typeorm";
-import { User } from "./entity/User";
 import { Photo } from "./entity/Photo.entity";
 
 export const AppDataSource = new DataSource({
@@ -10,9 +11,8 @@ export const AppDataSource = new DataSource({
   username: "sauharda",
   password: "1619",
   database: "typeormlearn",
-  synchronize: true,
+  migrations: ["src/migrations/**/*.ts"],
+  entities: [Photo, PhotoMetadata, Author, Album],
+  synchronize: false,
   logging: false,
-  entities: [User, Photo],
-  migrations: [],
-  subscribers: [],
 });

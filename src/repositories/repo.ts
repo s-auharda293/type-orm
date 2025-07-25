@@ -1,6 +1,6 @@
 import { Photo } from "../entity/Photo.entity";
 import { PhotoMetadata } from "../entity/PhotoMetadata.entity";
-import { AppDataSource } from "../index";
+import { AppDataSource } from "./../data-source";
 
 // create a photo
 const photo = new Photo();
